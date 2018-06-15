@@ -73,7 +73,26 @@
         <Spinner
             android:id="@+id/gender_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/target_weight_txt"
+            android:padding="@dimen/view_padding"/>
+        <View
+            android:id="@+id/hr"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/mycolor"
+            android:layout_below="@id/gender_spinner"/>
+
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/gender_spinner"
+            android:layout_marginVertical="@dimen/view_padding"
+            android:layout_alignParentEnd="true"
+
+            android:text="@string/save_btn"/>
+
 
 
     </RelativeLayout>
