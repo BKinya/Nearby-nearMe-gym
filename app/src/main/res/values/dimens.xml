@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="view_padding">16dp</dimen>
+    <dimen name="linear_layout_padding">30dp</dimen>
+    <dimen name="padding_txt_view">2dp</dimen>
+    <dimen name="margin_horizontal">20dp</dimen>
+</resources>

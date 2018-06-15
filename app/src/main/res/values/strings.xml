@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">Nearby_nearMe_gym</string>
+    <string name="app_name">Nearby nearMe gym</string>
+    <string name="email_edit_txt">Email</string>
+    <string name="password_edit_txt">Password</string>
+    <string name="login_btn_login">login</string>
+    <string name="forgot_password_txt">FORGOT PASSWORD?</string>
+    <string name="create_account_btn">CREATE ACCOUNT</string>
+    <string name="or">OR</string>
+    <string name="new_to_nearby_nearme_gym">Do not have account?</string>
+    <string name="name_edit_txt">Name</string>
+    <string name="confirm_password_edit_txt">Confirm Password</string>
+    <string name="click_to_login_btn">click to login</string>
+    <string name="txt_header">Update Profile</string>
+    <string name="phone_number_txt">Phone number</string>
+    <string name="age_txt">Age</string>
+    <string name="current_weight_txt">Current weight</string>
+    <string name="target_weight_txt">Target weight</string>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+        <item>Prefer not to mention</item>
+    </string-array>
 </resources>
