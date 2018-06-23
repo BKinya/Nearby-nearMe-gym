@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/email_edit_txt"
             android:hint="@string/password_edit_txt"
-            android:padding="@dimen/view_padding" />
+            android:padding="@dimen/view_padding"
+            android:inputType="textPassword"/>
 
         <EditText
             android:id="@+id/confirm_password_edit_txt"
@@ -43,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/password_edit_txt"
             android:hint="@string/confirm_password_edit_txt"
-            android:padding="@dimen/view_padding" />
+            android:padding="@dimen/view_padding"
+            android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/signup_btn_signup"
