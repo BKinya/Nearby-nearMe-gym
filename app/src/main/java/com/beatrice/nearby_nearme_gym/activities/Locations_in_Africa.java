@@ -1,8 +1,8 @@
 package com.beatrice.nearby_nearme_gym.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -30,7 +30,6 @@ public class Locations_in_Africa extends AppCompatActivity
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setText("Add"));
         tabLayout.addTab(tabLayout.newTab().setText("Past"));
         tabLayout.addTab(tabLayout.newTab().setText("instructors"));
 
@@ -58,12 +57,13 @@ public class Locations_in_Africa extends AppCompatActivity
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //start a fragment to add new work out session
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(getApplicationContext(), Add_work_out_session.class);
+                startActivity(i);
             }
         });
 
@@ -80,7 +80,7 @@ public class Locations_in_Africa extends AppCompatActivity
     /**
      * method to handle toolbar and tan navigation
      */
-    public void handletoolbar(){
+    public void handletoolbar() {
 
     }
 
@@ -122,19 +122,6 @@ public class Locations_in_Africa extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
