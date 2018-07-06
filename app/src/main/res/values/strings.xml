@@ -10,7 +10,7 @@
     <string name="name_edit_txt">Name</string>
     <string name="confirm_password_edit_txt">Confirm Password</string>
     <string name="click_to_login_btn">click to login</string>
-    <string name="txt_header">Update Profile</string>
+    <string name="txt_header">Set Profile</string>
     <string name="phone_number_txt">Phone number</string>
     <string name="age_txt">Age</string>
     <string name="current_weight_txt">Current weight</string>
@@ -39,13 +39,13 @@
 
     <string name="date">datePicker</string>
     <string name="time">timePicker</string>
-    <string name="date_txt">pick a Date</string>
+    <string name="date_txt">Click to Pick a Date</string>
     <string name="pick_time_txt">Pick Time</string>
     <string name="no_of_sets_txt">No of sets</string>
     <string name="continue_with_facebook_txt">Continue with facebook</string>
 
     <string-array name="exercise_cat">
-        <item>Exercise type/name</item>
+        <item>Select exercise name/type</item>
         <item>Horizontal Seated Leg Press</item>
         <item>Lat Pull-Down</item>
         <item>Cable Biceps Bar</item>
@@ -56,5 +56,7 @@
     </string-array>
     <string name="facebook_app_id">268444440576728</string>
     <string name="title_activity_user_profile">user_profile</string>
+    <string name="add_workout_session_txt">Add Workout session</string>
+    <string name="date_edit_txt">Date</string>
 
 </resources>

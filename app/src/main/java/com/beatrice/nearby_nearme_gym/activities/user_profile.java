@@ -1,5 +1,6 @@
 package com.beatrice.nearby_nearme_gym.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,14 +33,16 @@ public class user_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
-
-
         userProfileApiService = ApiUtilities.getUserProfileApi();
-        getUserProfile("bitukiki@gmail.com");
+
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("email");
+
+        getUserProfile(userEmail);
     }
 
     public void getUserProfile(String email) {
+
         userProfileApiService.getUserProfile(email).enqueue(new Callback<User_profile>() {
             @Override
             public void onResponse(Call<User_profile> call, Response<User_profile> response) {
@@ -54,13 +57,13 @@ public class user_profile extends AppCompatActivity {
                     user_profile.setCurrent_weight(response.body().current_weight);
                     user_profile.setTarget_weight(response.body().target_weight);
 
-                    String name = user_profile.getName();
-                    String email = user_profile.getEmail();
-                    String phone = Integer.toString(user_profile.getPhone());
-                    String gender = user_profile.getGender();
-                    String age = Integer.toString(user_profile.getAge());
-                    String c_weight = Integer.toString(user_profile.getCurrent_weight());
-                    String t_weight = Integer.toString(user_profile.getTarget_weight());
+                    String name ="Name\n" +user_profile.getName();
+                    String email = "Email\n" +user_profile.getEmail();
+                    String phone = "Phone number\n" +Integer.toString(user_profile.getPhone());
+                    String gender = "Gender\n"+user_profile.getGender();
+                    String age = "Age \n" +Integer.toString(user_profile.getAge());
+                    String c_weight = "Current weight\n"+Integer.toString(user_profile.getCurrent_weight());
+                    String t_weight = "Target weight\n"+Integer.toString(user_profile.getTarget_weight());
 
                     //array
                     String [] user_p = {name, email, phone, gender, age, c_weight, t_weight};
@@ -78,11 +81,6 @@ public class user_profile extends AppCompatActivity {
 
                     ListView listView = findViewById(R.id.profile_listview);
                     listView.setAdapter(adapter);
-
-                    if (phone == null){
-                        Log.i("Sucess", "Null body");
-                    }
-                    Log.i("Sucess", "my no " +phone);
                 }
 
 

@@ -89,6 +89,7 @@ public  class set_profile_activity extends LifecycleLoggingActivity implements L
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         Intent i= new Intent(set_profile_activity.this, Locations_in_Africa.class);
+        i.putExtra("email", data);
         startActivity(i);
 
     }
@@ -126,7 +127,7 @@ public  class set_profile_activity extends LifecycleLoggingActivity implements L
 
             saveData(name, email, phone, gender, age, c_weight, t_weight);
 
-            return name;
+            return email;
         }
 
         public void saveData(String name, String email, String phone, String gender, String age, String c_weight, String t_weight) {

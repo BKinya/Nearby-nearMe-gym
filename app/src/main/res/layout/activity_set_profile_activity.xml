@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/txt_header"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:paddingVertical="@dimen/view_padding"/>
 
         <EditText
@@ -74,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weight_edit_txt"
+            android:inputType="number"
             android:hint="@string/target_weight_txt"
             android:padding="@dimen/view_padding"/>
 

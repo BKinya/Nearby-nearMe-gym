@@ -4,6 +4,7 @@
     <dimen name="linear_layout_padding">30dp</dimen>
     <dimen name="padding_txt_view">2dp</dimen>
     <dimen name="margin_horizontal">20dp</dimen>
+    <dimen name="margin_vertical">65dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

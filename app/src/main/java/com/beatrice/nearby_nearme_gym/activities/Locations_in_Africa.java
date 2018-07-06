@@ -1,6 +1,7 @@
 package com.beatrice.nearby_nearme_gym.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -18,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beatrice.nearby_nearme_gym.R;
 import com.beatrice.nearby_nearme_gym.activities.fragments.Home;
@@ -27,17 +29,25 @@ public class Locations_in_Africa extends AppCompatActivity
 
     private TextView email_txt_view;
 
+    public static final String SHARED_REFS = "shared prefs";
+    public static final String TEXT = "text";
+
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locations_in__africa);
 
+        if (savedInstanceState != null){
+            email_txt_view.setText(savedInstanceState.getString("Email"));
+
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        String email = intent.getStringExtra("email");
+
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
@@ -73,7 +83,9 @@ public class Locations_in_Africa extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = getusersEmail();
                 Intent i = new Intent(getApplicationContext(), Add_work_out_session.class);
+                i.putExtra("user_email", email);
                 startActivity(i);
             }
         });
@@ -88,9 +100,21 @@ public class Locations_in_Africa extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         email_txt_view = headerView.findViewById(R.id.email_txt_view);
-        email_txt_view.setText(email);
+        email_txt_view.setText(getusersEmail());
 
 
+
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String email = getusersEmail();
+
+        if (email != null ){
+            outState.putString("Email", email);
+        }
     }
 
     /**
@@ -99,6 +123,13 @@ public class Locations_in_Africa extends AppCompatActivity
     public void handletoolbar() {
 
     }
+    public String getusersEmail(){
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
+        return  email;
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -134,15 +165,14 @@ public class Locations_in_Africa extends AppCompatActivity
 
     private void displaySelecteedScreen(int itemId){
 
+        String  senderEmail = getusersEmail();
         switch (itemId){
             case R.id.nav_profile:
                 Intent i = new Intent(getApplicationContext(), user_profile.class);
+                i.putExtra("email", senderEmail);
+                startActivity(i);
                 break;
         }
-
-        //replacing fragment
-
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

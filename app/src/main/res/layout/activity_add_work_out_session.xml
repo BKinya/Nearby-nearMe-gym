@@ -6,25 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".activities.Add_work_out_session">
 
-    //TODO put a map fragment or a location selection
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal">
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginVertical="@dimen/margin_vertical">
+
+        <TextView
+            android:id="@+id/txt_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_workout_session_txt"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:gravity="center"
+            android:padding="@dimen/view_padding"/>
 
         <Button
             android:id="@+id/date_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/date_txt" />
+            android:text="@string/date_txt"
+            android:layout_below="@+id/txt_header"/>
 
-        <Button
-            android:id="@+id/time_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/date_txt_view"
-            android:text="@string/pick_time_txt" />
 
         <EditText
             android:id="@+id/date_txt_view"
@@ -32,22 +37,16 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/date_btn"
             android:layout_alignStart="@+id/date_btn"
-            android:layout_below="@+id/date_btn" />
+            android:layout_below="@+id/date_btn"
+            android:hint="@string/date_edit_txt"/>
 
-        <EditText
-            android:id="@+id/time_txt_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/time_btn"
-            android:layout_alignStart="@+id/time_btn"
-            android:layout_below="@+id/time_btn" />
 
 
         <Spinner
             android:id="@+id/exercise_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/time_txt_view" />
+            android:layout_below="@id/date_txt_view" />
 
         <EditText
             android:id="@+id/no_of_sets"

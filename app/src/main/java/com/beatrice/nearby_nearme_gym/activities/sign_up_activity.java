@@ -1,6 +1,7 @@
 package com.beatrice.nearby_nearme_gym.activities;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
@@ -35,7 +37,9 @@ public class sign_up_activity extends LifecycleLoggingActivity {
 
     //views
     private EditText name_edittxt, email_edittxt, password_edittxt, confirm_password_edittxt;
-    private Button signup_btn_signup;
+    private Button signup_btn_signup, login_btn_sign_up;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,12 @@ public class sign_up_activity extends LifecycleLoggingActivity {
         confirm_password_edittxt = findViewById(R.id.confirm_password_edit_txt);
 
         signup_btn_signup = findViewById(R.id.signup_btn_signup);
+        login_btn_sign_up = findViewById(R.id.login_btn_sign_up);
+
+        //progressBar = findViewById(R.id.progressBar);
+
+
+
 
         isUserInputValid();
 
@@ -61,6 +71,12 @@ public class sign_up_activity extends LifecycleLoggingActivity {
             }
         });
 
+        login_btn_sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), login_activity.class));
+            }
+        });
     }
 
 
@@ -113,15 +129,30 @@ public class sign_up_activity extends LifecycleLoggingActivity {
     }
 
 
-    public class  New_user_asyncktask extends AsyncTask<String, Void, String>{
+    public class  New_user_asyncktask extends AsyncTask<String, Integer, String> {
+
         @Override
-        protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), "my name is" +s, Toast.LENGTH_LONG);
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(getApplicationContext());
+            progressDialog.setMessage("Registering...");
+
+
+        }
+
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            progressDialog.show();
+
+
         }
 
         @Override
         protected String doInBackground(String... strings) {
 
+            //update the progress bar
             final String name = name_edittxt.getText().toString();
             final String email = email_edittxt.getText().toString();
             String password = password_edittxt.getText().toString();
@@ -130,24 +161,34 @@ public class sign_up_activity extends LifecycleLoggingActivity {
         }
 
         public void saveData(final String name, final String email, String password){
-           userApiService.insert_data(name, email, password).enqueue(new Callback<New_user>() {
-               @Override
-               public void onResponse(Call<New_user> call, Response<New_user> response) {
-                   if(response.isSuccessful()) {
-                       Intent intent = new Intent(getApplicationContext(), set_profile_activity.class);
-                       intent.putExtra("name", name);
-                       intent.putExtra("email", email);
-                       startActivity(intent);
-                       Log.d("Beatrice", response.body().toString());
-                   }
-               }
+            userApiService.insert_data(name, email, password).enqueue(new Callback<New_user>() {
+                @Override
+                public void onResponse(Call<New_user> call, Response<New_user> response) {
+                    if(response.isSuccessful()) {
+                        Intent intent = new Intent(getApplicationContext(), set_profile_activity.class);
+                        intent.putExtra("name", name);
+                        intent.putExtra("email", email);
+                        startActivity(intent);
+                        Log.d("Beatrice", response.body().toString());
+                    }
+                }
 
-               @Override
-               public void onFailure(Call<New_user> call, Throwable t) {
-                   Log.i("Sign_up_activity", "Post failed");
-               }
-           });
+                @Override
+                public void onFailure(Call<New_user> call, Throwable t) {
+                    Log.i("Sign_up_activity", "Post failed");
+                }
+            });
         }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(getApplicationContext(), "my name is" +s, Toast.LENGTH_LONG);
+            if (progressDialog !=null ){
+                progressDialog.dismiss();
+            }
+        }
+
+
     }
 
 }

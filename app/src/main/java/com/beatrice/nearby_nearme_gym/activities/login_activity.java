@@ -1,6 +1,7 @@
 package com.beatrice.nearby_nearme_gym.activities;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.content.AsyncTaskLoader;
@@ -76,7 +77,10 @@ public class login_activity extends LifecycleLoggingActivity implements LoaderMa
         login_btn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isInputValid();
+                if(!isInputValid()){
+                    Log.i("TAG", "empty fields");
+                    return;
+                }
                 getSupportLoaderManager().initLoader(0, null, login_activity.this);
             }
         });
@@ -108,15 +112,17 @@ public class login_activity extends LifecycleLoggingActivity implements LoaderMa
      * @return boolean
      */
 
-    public void isInputValid() {
+    public boolean isInputValid() {
         if (TextUtils.isEmpty(email_txt_view.getText().toString())) {
             email_txt_view.setError("Invalid email address");
-            return;
+            return false;
         }
         if (TextUtils.isEmpty(password_txt_view.getText().toString())) {
             password_txt_view.setError("Invalid Password");
-            return;
+            return false;
         }
+
+        return true;
     }
 
     /**
@@ -141,10 +147,6 @@ public class login_activity extends LifecycleLoggingActivity implements LoaderMa
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        Intent i = new Intent(this, Locations_in_Africa.class);
-        i.putExtra("email", data);
-        startActivity(i);
-
     }
 
     @Override
@@ -154,6 +156,8 @@ public class login_activity extends LifecycleLoggingActivity implements LoaderMa
 
     //AsyncTaskLoader to authenticate the user
     private static class LoginAsyncTaskLoader extends AsyncTaskLoader<String> {
+
+        private Context context = getContext();
 
         public LoginAsyncTaskLoader(Context context) {
             super(context);
@@ -165,38 +169,56 @@ public class login_activity extends LifecycleLoggingActivity implements LoaderMa
             forceLoad();
         }
 
+        @Override
+        protected void onStopLoading() {
+            super.onStopLoading();
+            cancelLoad();
+        }
 
         @Nullable
         @Override
         public String loadInBackground() {
-            String email = email_txt_view.getText().toString();
+            String message = null;
+            final String email = email_txt_view.getText().toString();
             String password = password_txt_view.getText().toString();
-            login(email, password);
-            return email;
+            Call<LoginResponseObj>call = login(email, password);
+             call.enqueue(new Callback<LoginResponseObj>() {
+                 @Override
+                 public void onResponse(Call<LoginResponseObj> call, Response<LoginResponseObj> response) {
+                     if (response.isSuccessful()){
+                          if (response.body().getMessage().equals("user does not exist")){
+                              Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
+                              onStopLoading();
+                          }else if(response.body().getMessage().equals("invalid login")){
+                              Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
+                              onStopLoading();
+                          }else if(response.body().getMessage().equals("success")){
+                                Intent i = new Intent(context, Locations_in_Africa.class);
+                                i.putExtra("email", email);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                          }
+                     }
+                 }
+
+                 @Override
+                 public void onFailure(Call<LoginResponseObj> call, Throwable t) {
+                     Log.i("TAG", t.getMessage());
+
+                 }
+             });
+            return message;
         }
 
-        public void login(String email, String password) {
-            //TODO correct login
-            userApiService.login(email, password).enqueue(new Callback<LoginResponseObj>() {
-                @Override
-                public void onResponse(Call<LoginResponseObj> call, Response<LoginResponseObj> response) {
-                    if (response.isSuccessful()){
-                        if (response.body().getMessage().equals("Success")){
-                            Log.i("TAG", "success");
-                        }else{
-                            Log.i("TAG", "Invalid Login");
-                            return;
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<LoginResponseObj> call, Throwable t) {
-                    Log.i("Tag", t.getMessage());
-                }
-            });
+        public Call<LoginResponseObj> login(String email, String password) {
+            Call call = userApiService.login(email, password);
+            return  call;
         }
+
+        public static String loginResponse(String mesaage){
+            return mesaage;
+        }
+
     }
 
 
