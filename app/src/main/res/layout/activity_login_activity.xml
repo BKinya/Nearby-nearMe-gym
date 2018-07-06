@@ -10,7 +10,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
         android:layout_marginHorizontal="@dimen/margin_horizontal">
         <!--login form-->
         <EditText
@@ -53,25 +52,62 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/login_btn_login"
-            android:padding="@dimen/linear_layout_padding">
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:paddingTop="@dimen/view_padding">
 
             <TextView
                 android:id="@+id/txt_msg"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/new_to_nearby_nearme_gym"
-                android:padding="@dimen/padding_txt_view"/>
+                android:text="@string/new_to_nearby_nearme_gym" />
             <TextView
-                android:id="@+id/sign_up_btn_login"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/sign_up_txt_login"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/create_account_btn"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:padding="@dimen/padding_txt_view"/>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/lineear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearlayout"
+            android:orientation="horizontal"
+            android:padding="@dimen/view_padding">
+
+            <View
+                android:id="@+id/hr"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/mycolor"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/txt_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/or"
+                android:paddingHorizontal="@dimen/view_padding"/>
+
+            <View
+                android:id="@+id/hr1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/mycolor"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fb_login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lineear_layout" />
 
 
     </RelativeLayout>

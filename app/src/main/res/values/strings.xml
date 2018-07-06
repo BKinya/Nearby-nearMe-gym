@@ -35,13 +35,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="gender_txt">Gender</string>
     <string name="help_txt">Help</string>
-    <string name="settings_txt">Settings</string>
+    <string name="settings_txt">Profile</string>
 
     <string name="date">datePicker</string>
     <string name="time">timePicker</string>
     <string name="date_txt">pick a Date</string>
     <string name="pick_time_txt">Pick Time</string>
     <string name="no_of_sets_txt">No of sets</string>
+    <string name="continue_with_facebook_txt">Continue with facebook</string>
 
     <string-array name="exercise_cat">
         <item>Exercise type/name</item>
@@ -53,4 +54,7 @@
         <item>Hanging Leg Raise</item>
         <item>Cardio: Rowing Machine</item>
     </string-array>
+    <string name="facebook_app_id">268444440576728</string>
+    <string name="title_activity_user_profile">user_profile</string>
+
 </resources>

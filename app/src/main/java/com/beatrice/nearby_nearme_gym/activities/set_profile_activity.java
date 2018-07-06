@@ -90,7 +90,6 @@ public  class set_profile_activity extends LifecycleLoggingActivity implements L
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         Intent i= new Intent(set_profile_activity.this, Locations_in_Africa.class);
         startActivity(i);
-        Log.d("Beatrice", data);
 
     }
 
@@ -117,8 +116,6 @@ public  class set_profile_activity extends LifecycleLoggingActivity implements L
         @Nullable
         @Override
         public String loadInBackground() {
-
-
             String name = name_edit_txt.getText().toString();
             String email = email_edit_txt.getText().toString();
             String phone = phone_edit_txt.getText().toString();

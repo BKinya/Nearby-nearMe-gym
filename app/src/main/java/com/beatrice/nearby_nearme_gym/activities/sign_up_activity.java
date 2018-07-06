@@ -138,12 +138,13 @@ public class sign_up_activity extends LifecycleLoggingActivity {
                        intent.putExtra("name", name);
                        intent.putExtra("email", email);
                        startActivity(intent);
+                       Log.d("Beatrice", response.body().toString());
                    }
                }
 
                @Override
                public void onFailure(Call<New_user> call, Throwable t) {
-                   Log.i("Sign_up_activity", "Unable to send post");
+                   Log.i("Sign_up_activity", "Post failed");
                }
            });
         }

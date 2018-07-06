@@ -7,41 +7,32 @@ public class User_profile {
 
     @SerializedName("name")
     @Expose
-    private String name;
+    public String name;
 
     @SerializedName("email")
     @Expose
-    private String email;
+    public String email;
 
     @SerializedName("phone")
     @Expose
-    private int phone;
+    public int phone;
 
     @SerializedName("age")
     @Expose
-    private int age;
+    public int age;
 
     @SerializedName("gender")
     @Expose
-    private String gender;
+    public String gender;
 
     @SerializedName("current_weight ")
     @Expose
-    private int current_weight;
+    public int current_weight;
 
     @SerializedName("target_weight")
     @Expose
-    private int target_weight;
+    public int target_weight;
 
-    public User_profile(String name, String email, int phone, int age, String gender, int c_weight, int t_weight){
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.age = age;
-        this.gender = gender;
-        this.current_weight = c_weight;
-        this.target_weight = t_weight;
-    }
 
     public String getName() {
         return name;

@@ -12,27 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.login_activity" />
-        <activity android:name=".activities.sign_up_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.set_profile_activity"></activity>
+        <activity android:name=".activities.login_activity" />
+        <activity android:name=".activities.sign_up_activity" />
+        <activity android:name=".activities.set_profile_activity" />
         <activity android:name=".activities.password_reset_activity" />
         <activity
             android:name=".activities.Locations_in_Africa"
             android:label="@string/title_activity_locations_in__africa"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".activities.Add_work_out_session">
+        <activity android:name=".activities.Add_work_out_session" />
+        <activity android:name=".activities.user_profile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

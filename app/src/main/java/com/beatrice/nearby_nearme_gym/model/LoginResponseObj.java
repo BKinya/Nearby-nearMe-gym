@@ -1,14 +1,19 @@
 package com.beatrice.nearby_nearme_gym.model;
 
-public class Login_usere {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String mesage;
+public class LoginResponseObj {
 
-    public String getMesage() {
-        return mesage;
+    @SerializedName("message")
+    @Expose
+    private String message;
+
+    public String getMessage() {
+        return message;
     }
 
-    public void setMesage(String mesage) {
-        this.mesage = mesage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
